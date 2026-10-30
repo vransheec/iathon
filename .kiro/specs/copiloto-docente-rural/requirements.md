@@ -44,6 +44,8 @@ Estos principios son restricciones transversales que todo requisito funcional y 
 - **Curador**: Especialista de la UGEL con rol de revisión y validación de sesiones.
 - **UGEL**: Unidad de Gestión Educativa Local.
 - **MINEDU**: Ministerio de Educación del Perú.
+- **Material_MINEDU**: Material educativo oficial que entrega el MINEDU (libros, cuadernos de trabajo, guías docentes, recursos multimedia y plantillas), distribuido digitalmente mediante uno o varios buckets de Amazon S3 en lugar de distribución física.
+- **Bucket_Material**: Bucket de Amazon S3 donde el MINEDU publica y versiona el Material_MINEDU para su consumo por las escuelas.
 - **Orquestador_Agentes**: Componente en la nube que coordina la ejecución de los agentes de IA mediante un pipeline.
 - **Agente_Curricular**: Agente de IA que genera el contenido pedagógico alineado al Currículo Nacional.
 - **Agente_Traductor**: Agente de IA que traduce contenido a una Lengua_Originaria.
@@ -101,6 +103,7 @@ Estos principios son restricciones transversales que todo requisito funcional y 
 2. WHEN el docente solicita contenido curricular, THE Copiloto_Docente SHALL servir el contenido desde la nube en menos de 3 segundos.
 3. WHEN se publica una versión actualizada del currículo o las plantillas en la nube, THE Copiloto_Docente SHALL servir la versión vigente a los docentes en su siguiente solicitud.
 4. WHERE el docente selecciona un periodo, área y grado, THE Copiloto_Docente SHALL filtrar el contenido curricular servido desde la nube según esa selección.
+5. THE Copiloto_Docente SHALL obtener el contenido curricular oficial y las plantillas MINEDU a partir del Material_MINEDU almacenado en los Bucket_Material, conforme a la distribución digital definida en el Requisito 26.
 
 ### Requisito 4: Autenticación y Control de Accesos
 
@@ -374,3 +377,17 @@ Estos principios son restricciones transversales que todo requisito funcional y 
 8. WHEN un endpoint de escritura crea un recurso exitosamente, THE Copiloto_Docente SHALL responder con código HTTP 201 y un mensaje que confirma el recurso creado y su identificador.
 9. WHEN un endpoint acepta un trabajo asíncrono, THE Copiloto_Docente SHALL responder con código HTTP 202 y un mensaje que indica el identificador del trabajo y la ruta para consultar su estado.
 10. THE Health_Check SHALL incluir en cada respuesta una marca de tiempo y la versión del servicio para trazabilidad.
+
+### Requisito 26: Distribución Digital del Material MINEDU mediante Amazon S3
+
+**Historia de Usuario:** Como administrador del MINEDU o de la UGEL, quiero publicar el material oficial en buckets de Amazon S3, para que las escuelas lo reciban digitalmente desde la nube sin distribución física.
+
+#### Criterios de Aceptación
+
+1. WHEN el MINEDU publica Material_MINEDU, THE Copiloto_Docente SHALL almacenar el material en uno o varios Bucket_Material de Amazon S3 en lugar de distribuirlo físicamente.
+2. THE Copiloto_Docente SHALL organizar el Material_MINEDU en el Bucket_Material por nivel educativo, grado, área curricular y periodo.
+3. WHEN un docente solicita Material_MINEDU, THE Copiloto_Docente SHALL servir el material desde el Bucket_Material a través del Enlace_Satelital.
+4. WHEN el MINEDU publica una versión actualizada de un Material_MINEDU, THE Copiloto_Docente SHALL versionar el objeto en el Bucket_Material y servir la versión vigente a los docentes.
+5. THE Copiloto_Docente SHALL cifrar el Material_MINEDU en reposo en el Bucket_Material y restringir el acceso mediante políticas de acceso basadas en roles.
+6. WHEN el Copiloto_Docente entrega Material_MINEDU de gran tamaño por el Enlace_Satelital, THE Copiloto_Docente SHALL optimizar la entrega mediante compresión o entrega por demanda para contener el consumo de ancho de banda satelital.
+7. WHERE el MINEDU usa varios Bucket_Material, THE Copiloto_Docente SHALL mantener un índice o catálogo que permita a los docentes localizar y recuperar el material correcto.
