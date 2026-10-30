@@ -1,0 +1,284 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Crear la estructura del proyecto, dependencias y el script de build del zip": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381046433
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381104218
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381394272
+      }
+    ],
+    "2.1 Implementar el parseo del evento de Lambda Function URL y el despacho por método + ruta": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381050033
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381406002
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381866721
+      }
+    ],
+    "3.1 Implementar el cálculo de estado global y la verificación por componente": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381052965
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381877533
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382095723
+      }
+    ],
+    "4.1 Implementar el acceso a DynamoDB y el repositorio de items": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381056402
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381879502
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382092174
+      }
+    ],
+    "5.1 Implementar la creación y el worker de jobs": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381059714
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381881404
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382097616
+      }
+    ],
+    "6. Checkpoint — contrato del verificador": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381062770
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382146609
+      },
+      {
+        "executionId": "567e9753-5834-4b84-9519-52ea8f66d7e1",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382378850
+      },
+      {
+        "executionId": "b7aa0fb4-7a27-4d6c-ad9f-98c483abba34",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382438892
+      }
+    ],
+    "7.1 Implementar el cliente Bedrock y el esquema de Sesion_Aprendizaje": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381065884
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381883209
+      },
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382093933
+      }
+    ],
+    "7.2 Implementar la generación de Sesion_Aprendizaje con validación, reintento y fallback": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381069143
+      },
+      {
+        "executionId": "b7aa0fb4-7a27-4d6c-ad9f-98c483abba34",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382449341
+      },
+      {
+        "executionId": "e43cf938-b40a-4201-802a-755f2b439471",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382505721
+      },
+      {
+        "executionId": "e43cf938-b40a-4201-802a-755f2b439471",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382804797
+      }
+    ],
+    "7.3 Implementar el chat pedagógico": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381072292
+      },
+      {
+        "executionId": "b7aa0fb4-7a27-4d6c-ad9f-98c483abba34",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382451601
+      },
+      {
+        "executionId": "e43cf938-b40a-4201-802a-755f2b439471",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382707324
+      },
+      {
+        "executionId": "e43cf938-b40a-4201-802a-755f2b439471",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382806558
+      }
+    ],
+    "8.1 Construir el HTML/JS del panel docente demo": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381075684
+      },
+      {
+        "executionId": "e43cf938-b40a-4201-802a-755f2b439471",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382813598
+      },
+      {
+        "executionId": "5ae0b107-ac90-411f-81de-14fcb6cf03c1",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382849376
+      }
+    ],
+    "9. Checkpoint — GenAI y frontend": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381078695
+      }
+    ],
+    "10.1 Crear el archivo de steering del proyecto": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381081785
+      },
+      {
+        "executionId": "d216f129-66dd-42b6-a40e-1a8e1c865b55",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793383007563
+      },
+      {
+        "executionId": "a9e4d265-a366-4e88-9847-4bb528f17727",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793383280019
+      }
+    ],
+    "10.2 Crear el hook del proyecto": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381084773
+      }
+    ],
+    "11.1 Crear la tabla DynamoDB y el rol de ejecución IAM": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381087784
+      }
+    ],
+    "11.2 Empaquetar y desplegar la función Lambda con Function URL": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381091183
+      }
+    ],
+    "11.3 Ejecutar smoke tests de los endpoints con curl": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381094303
+      }
+    ],
+    "12. Checkpoint final — demo verificable": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381097373
+      }
+    ],
+    "1. Inicializar el proyecto backend y el pipeline de empaquetado": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381397702
+      }
+    ],
+    "2. Implementar el router HTTP interno de la Lambda": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793381870293
+      }
+    ],
+    "4. Implementar el cliente de DynamoDB y los endpoints /items": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382099340
+      }
+    ],
+    "3. Implementar el endpoint GET /health con verificación por componente": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382100994
+      }
+    ],
+    "5. Implementar el flujo asíncrono /jobs": [
+      {
+        "executionId": "6f1a5cf2-b82c-4cb2-b2dd-273e07bea9cd",
+        "chatSessionId": "sess_18b53184-7231-43b5-8923-a8ebfea16699",
+        "timestamp": 1793382102746
+      }
+    ]
+  }
+}

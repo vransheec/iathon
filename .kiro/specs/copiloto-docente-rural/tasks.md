@@ -16,16 +16,16 @@ Modelos Bedrock: `anthropic.claude-haiku-4-5-20251001-v1:0` (respuestas rápidas
 
 ## Tasks
 
-- [ ] 1. Inicializar el proyecto backend y el pipeline de empaquetado
-  - [ ] 1.1 Crear la estructura del proyecto, dependencias y el script de build del zip
+- [x] 1. Inicializar el proyecto backend y el pipeline de empaquetado
+  - [x] 1.1 Crear la estructura del proyecto, dependencias y el script de build del zip
     - Crear `package.json` con dependencias de ejecución `@aws-sdk/client-dynamodb`, `@aws-sdk/lib-dynamodb` y `@aws-sdk/client-bedrock-runtime` (AWS SDK v3), y dependencias de desarrollo `typescript`, `esbuild`, `vitest` y `fast-check`.
     - Configurar `tsconfig.json` (target `ES2022`, `module` NodeNext, `strict: true`) y la estructura de carpetas `src/` (`src/handler.ts`, `src/router.ts`, `src/routes/`, `src/lib/`, `src/genai/`, `src/frontend/`).
     - Definir en `src/config.ts` la lectura de variables de entorno `TEAM_ID`, `TABLE_NAME`, `BEDROCK_MODEL_ID`, `BEDROCK_MODEL_ID_QUALITY`, `AWS_REGION` y `SERVICE_VERSION` con valores por defecto para la demo.
     - Añadir script `build` que use `esbuild` para empaquetar `src/handler.ts` en `dist/index.js` (bundle, `--platform=node`, `--target=node20`) y generar `dist/function.zip` listo para desplegar.
     - _Requirements: 22.8_
 
-- [ ] 2. Implementar el router HTTP interno de la Lambda
-  - [ ] 2.1 Implementar el parseo del evento de Lambda Function URL y el despacho por método + ruta
+- [x] 2. Implementar el router HTTP interno de la Lambda
+  - [x] 2.1 Implementar el parseo del evento de Lambda Function URL y el despacho por método + ruta
     - En `src/router.ts` parsear `event.requestContext.http.method` y `rawPath`, extraer parámetros de ruta (`/items/{id}`, `/jobs/{jobId}`) y el cuerpo JSON, y despachar a los handlers de `GET /health`, `POST /items`, `GET /items/{id}`, `GET /items`, `POST /jobs`, `GET /jobs/{jobId}` y `GET /app`.
     - Implementar helpers de respuesta JSON con cabeceras CORS (`Access-Control-Allow-Origin: *`, métodos y headers) y soporte de `OPTIONS` (preflight), además de una respuesta 404 para rutas no reconocidas.
     - Mapear códigos de estado del contrato: 200/201 (items), 202 (jobs), 200/207/503 (health) y 503 para dependencias no disponibles.
@@ -36,8 +36,8 @@ Modelos Bedrock: `anthropic.claude-haiku-4-5-20251001-v1:0` (respuestas rápidas
     - Verificar respuesta a `OPTIONS` con cabeceras CORS.
     - _Requirements: 20.1, 20.8_
 
-- [ ] 3. Implementar el endpoint GET /health con verificación por componente
-  - [ ] 3.1 Implementar el cálculo de estado global y la verificación por componente
+- [x] 3. Implementar el endpoint GET /health con verificación por componente
+  - [x] 3.1 Implementar el cálculo de estado global y la verificación por componente
     - En `src/routes/health.ts` verificar DynamoDB (alcanzable/no alcanzable), Bedrock (alcanzable/no alcanzable/degradado) y el estado del propio servicio; componer la respuesta con `status: "ok"`, `team` (desde `TEAM_ID`), `global` (`healthy`/`degraded`/`unhealthy`), `version`, `timestamp` ISO y un arreglo `checks` por componente con mensaje diagnóstico.
     - Implementar la función pura `computeGlobalHealth(checks)` en `src/lib/health.ts`: todos sanos ⇒ `healthy`/200; componente no esencial degradado y sistema operativo ⇒ `degraded`/207; componente esencial caído ⇒ `unhealthy`/503; un microcorte/dependencia temporalmente degradada ⇒ `degraded` (nunca `unhealthy`).
     - _Requirements: 20.1, 25.1, 25.2, 25.3, 25.4, 25.5, 25.6, 25.10_
@@ -54,8 +54,8 @@ Modelos Bedrock: `anthropic.claude-haiku-4-5-20251001-v1:0` (respuestas rápidas
     - Verificar respuesta 200 con campos `status: "ok"` y `team` presentes cuando todos los componentes están sanos.
     - _Requirements: 20.1_
 
-- [ ] 4. Implementar el cliente de DynamoDB y los endpoints /items
-  - [ ] 4.1 Implementar el acceso a DynamoDB y el repositorio de items
+- [x] 4. Implementar el cliente de DynamoDB y los endpoints /items
+  - [x] 4.1 Implementar el acceso a DynamoDB y el repositorio de items
     - En `src/lib/ddb.ts` crear el `DynamoDBDocumentClient` (AWS SDK v3) apuntando a `TABLE_NAME`, con esquema de clave genérico (`pk`/`sk`) para distinguir items (`pk = "ITEM#<id>"`) y jobs.
     - Implementar `putItem(value)` que genera un `id`, persiste y devuelve el `id`; `getItem(id)` que devuelve `{ value }`; y `listItems()` que devuelve la lista de valores persistidos.
     - En `src/routes/items.ts` enlazar: `POST /items { value }` ⇒ 201 `{ id }`; `GET /items/{id}` ⇒ `{ value }`; `GET /items` ⇒ lista que incluye el valor persistido.
@@ -66,8 +66,8 @@ Modelos Bedrock: `anthropic.claude-haiku-4-5-20251001-v1:0` (respuestas rápidas
     - **Validates: Requirements 20.2, 20.3, 20.4**
     - Mockear el cliente de DynamoDB con un almacén en memoria.
 
-- [ ] 5. Implementar el flujo asíncrono /jobs
-  - [ ] 5.1 Implementar la creación y el worker de jobs
+- [x] 5. Implementar el flujo asíncrono /jobs
+  - [x] 5.1 Implementar la creación y el worker de jobs
     - En `src/routes/jobs.ts` implementar `POST /jobs { input }` que crea un registro de job en DynamoDB (`pk = "JOB#<jobId>"`, `status: "queued"`) y responde **de inmediato** 202 `{ jobId }` con la ruta de consulta.
     - Implementar el worker en la misma invocación o en segundo plano simple (p. ej. ejecución tras responder, o cálculo síncrono previo a persistir `done`) que produce `output = input` invertido como cadena y actualiza el job a `status: "done"` en < 12 s.
     - Implementar `GET /jobs/{jobId}` que lee de DynamoDB y devuelve `{ status: "done", output }` cuando el job terminó.
@@ -79,20 +79,20 @@ Modelos Bedrock: `anthropic.claude-haiku-4-5-20251001-v1:0` (respuestas rápidas
     - **Validates: Requirements 20.6, 20.7**
     - Generadores de cadenas vacías, unicode y de gran longitud.
 
-- [ ] 6. Checkpoint — contrato del verificador
+- [x] 6. Checkpoint — contrato del verificador
   - Asegurar que pasan todas las pruebas de /health, /items y /jobs; si surgen dudas, consultar al usuario.
 
 - [ ] 7. Integrar Amazon Bedrock para generación de sesión y chat pedagógico
-  - [ ] 7.1 Implementar el cliente Bedrock y el esquema de Sesion_Aprendizaje
+  - [x] 7.1 Implementar el cliente Bedrock y el esquema de Sesion_Aprendizaje
     - En `src/genai/bedrock.ts` crear el `BedrockRuntimeClient` (AWS SDK v3) y una función `invokeModel(prompt, modelId)` usando la Converse API, con selección de modelo rápido (`BEDROCK_MODEL_ID`) o de calidad (`BEDROCK_MODEL_ID_QUALITY`).
     - En `src/genai/schema.ts` definir el esquema de `Sesion_Aprendizaje` MINEDU (titulo, proposito, competencias, capacidades, desempenos, momentos inicio/desarrollo/cierre, materiales, evaluacion) y la función `validateSesion(obj)` que valida tipos y campos obligatorios.
     - _Requirements: 5.2, 7.1, 21.4_
 
-  - [ ] 7.2 Implementar la generación de Sesion_Aprendizaje con validación, reintento y fallback
+  - [x] 7.2 Implementar la generación de Sesion_Aprendizaje con validación, reintento y fallback
     - En `src/genai/sesion.ts` construir el prompt diseñado MINEDU, invocar Bedrock, validar la respuesta contra el esquema; si es inválida o la invocación falla, reintentar una vez; si el segundo intento falla, producir un borrador desde una plantilla local (`src/genai/plantilla.ts`) marcando `origen: "plantilla"` y un aviso.
     - _Requirements: 5.1, 5.6, 7.1, 7.2, 7.3, 21.5_
 
-  - [ ] 7.3 Implementar el chat pedagógico
+  - [x] 7.3 Implementar el chat pedagógico
     - En `src/genai/chat.ts` construir un prompt diseñado que inyecta contexto del Currículo Nacional MINEDU, invocar Bedrock y devolver la respuesta; si Bedrock no está disponible, devolver un aviso de servicio temporalmente no disponible.
     - Exponer las rutas del panel `POST /genai/sesion` y `POST /genai/chat` en el router, devolviendo JSON.
     - _Requirements: 11.1, 11.2, 11.3, 21.4_

@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Copiloto Docente Rural e Híbrido (demo IAthon). Infraestructura como código
+  (AWS SAM): una Lambda Node.js con Function URL pública que cumple el contrato
+  de la IAthon (/health, /items, /jobs, /app) e integra Amazon Bedrock para la
+  generación de sesiones MINEDU y el chat pedagógico. Persistencia en DynamoDB.
+
+Parameters:
+  TeamId:
+    Type: String
+    Description: Identificador público del equipo en el portal de la IAthon.
+    Default: copiloto-rural
+  BedrockModelId:
+    Type: String
+    Description: Modelo Bedrock rápido (chat).
+    Default: anthropic.claude-haiku-4-5-20251001-v1:0
+  BedrockModelIdQuality:
+    Type: String
+    Description: Modelo Bedrock de calidad (generación de sesiones).
+    Default: anthropic.claude-sonnet-4-5-20250929-v1:0
+  ServiceVersion:
+    Type: String
+    Default: '1.0.0'
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: nodejs20.x
+
+Resources:
+  ItemsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub '${AWS::StackName}-items'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+
+  CopilotoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-api'
+      Handler: index.handler
+      CodeUri: dist/
+      Description: API del Copiloto Docente Rural (contrato IAthon + GenAI Bedrock).
+      Environment:
+        Variables:
+          TEAM_ID: !Ref TeamId
+          TABLE_NAME: !Ref ItemsTable
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+          BEDROCK_MODEL_ID_QUALITY: !Ref BedrockModelIdQuality
+          SERVICE_VERSION: !Ref ServiceVersion
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ItemsTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:Converse
+              Resource: '*'
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowOrigins: ['*']
+          AllowMethods: ['GET', 'POST', 'OPTIONS']
+          AllowHeaders: ['Content-Type']
+
+Outputs:
+  ApiUrl:
+    Description: URL pública de la API (Lambda Function URL). Sin barra final.
+    Value: !GetAtt CopilotoFunctionUrl.FunctionUrl
+  TableName:
+    Description: Nombre de la tabla DynamoDB de items y jobs.
+    Value: !Ref ItemsTable

@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Build y pruebas al guardar el backend",
+  "description": "Cuando se guarda un archivo TypeScript del backend bajo src/, ejecuta el empaquetado y las pruebas para detectar errores de inmediato.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "runCommands",
+    "commands": [
+      "npm run build",
+      "npm test"
+    ]
+  }
+}

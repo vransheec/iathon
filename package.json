@@ -1,0 +1,24 @@
+{
+  "name": "copiloto-docente-rural",
+  "version": "1.0.0",
+  "description": "Backend DEMO del Copiloto Docente Rural e Híbrido: una única Lambda Node.js/TypeScript con Function URL que enruta el contrato del hackathon e integra Amazon Bedrock.",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/handler.ts --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js && cd dist && zip -q -j function.zip index.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.705.0",
+    "@aws-sdk/client-dynamodb": "^3.705.0",
+    "@aws-sdk/lib-dynamodb": "^3.705.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^20.17.0",
+    "esbuild": "^0.24.0",
+    "fast-check": "^3.23.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
